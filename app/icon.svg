@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Monograma C&L do manual: círculo laranja com filete creme. Troque pelo arquivo oficial se houver. -->
+  <circle cx="32" cy="32" r="31" fill="#e2733a"/>
+  <circle cx="32" cy="32" r="27" fill="none" stroke="#f5ede0" stroke-width="1.5"/>
+  <text x="32" y="41" text-anchor="middle" font-family="Pacifico, 'Brush Script MT', cursive" font-size="22" fill="#f5ede0">C&amp;L</text>
+</svg>

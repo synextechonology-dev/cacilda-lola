@@ -1,0 +1,84 @@
+.rodape {
+  background: var(--verde-escuro);
+  color: var(--creme);
+  padding-bottom: calc(var(--s-5) + 4rem); /* espaço para o botão flutuante da comanda */
+  overflow: hidden;
+}
+
+.estampa {
+  padding-top: 0.5rem;
+  opacity: 0.55;
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent);
+  mask-image: linear-gradient(to bottom, #000, transparent);
+}
+
+.chamada {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-5) 0 var(--s-5);
+  border-bottom: 1px solid var(--verde-linha);
+  text-align: center;
+}
+
+.chamadaTitulo {
+  font-size: var(--t-2xl);
+  line-height: 1.15;
+  color: var(--creme);
+  padding-bottom: 0.1em;
+}
+
+.chamadaTexto {
+  max-width: 40ch;
+  color: rgba(245, 237, 224, 0.8);
+}
+
+.chamadaBotoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: var(--s-1);
+}
+
+.miolo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  padding-top: var(--s-4);
+  text-align: center;
+}
+
+.assinatura {
+  color: var(--laranja);
+  font-size: var(--t-md);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.links a {
+  display: inline-block;
+  padding: 0.4rem 0;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.links a:hover {
+  border-color: var(--laranja);
+}
+
+.pe {
+  font-size: var(--t-xs);
+  line-height: 1.8;
+  color: rgba(245, 237, 224, 0.6);
+}

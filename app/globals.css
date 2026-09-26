@@ -1,0 +1,251 @@
+/* ============================================================
+   Cacilda & Lola · tokens da marca
+   Fonte: Manual de Identidade Visual V1 · 2026
+   Proporção sugerida pelo manual: 60 verde · 25 creme · 15 laranja
+   ============================================================ */
+:root {
+  /* Paleta oficial */
+  --verde: #2e3a34;      /* Verde Cacilda: fundo principal, texto */
+  --laranja: #e2733a;    /* Laranja Lola: logo, destaques (em pequenas doses) */
+  --creme: #f5ede0;      /* Creme: papelaria, fundos claros */
+  --terracota: #b8582a;  /* Texto laranja sobre fundo claro */
+  --salvia: #5e6b63;     /* Textos secundários */
+  --kraft: #e9dfce;      /* Embalagens, apoio */
+
+  /* Derivados (só variações de luz das cores oficiais) */
+  --verde-escuro: #25302a;
+  --verde-linha: rgba(245, 237, 224, 0.18);
+  --papel: #f8f2e8;
+  --tinta-suave: #4f5a53;
+
+  /* Tipografia: Pacifico (afeto) + Josefin Sans (organização) */
+  --fonte-cursiva: var(--font-pacifico), "Brush Script MT", cursive;
+  --fonte-apoio: var(--font-josefin), "Century Gothic", "Futura", sans-serif;
+
+  /* Escala tipográfica (razão 1,25 sobre 18px) */
+  --t-xs: 0.8rem;
+  --t-sm: 0.9rem;
+  --t-base: 1.125rem;
+  --t-md: 1.35rem;
+  --t-lg: clamp(1.6rem, 1.2rem + 1.4vw, 2.1rem);
+  --t-xl: clamp(2.2rem, 1.5rem + 3vw, 3.4rem);
+  --t-2xl: clamp(2.9rem, 1.6rem + 5.6vw, 5.8rem);
+
+  /* Espaços */
+  --s-1: 0.5rem;
+  --s-2: 1rem;
+  --s-3: 1.5rem;
+  --s-4: 2.5rem;
+  --s-5: 4rem;
+  --s-6: clamp(4.5rem, 3rem + 6vw, 8rem);
+
+  --largura: 72rem;
+  --margem: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+  --topo: 4.25rem; /* altura do cabeçalho fixo */
+
+  --raio-rotulo: 14px; /* cantos recortados da moldura */
+  --sombra-papel: 0 1px 0 rgba(46, 58, 52, 0.06), 0 18px 40px -22px rgba(37, 48, 42, 0.55);
+  --ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--topo) + 0.5rem);
+}
+
+body {
+  margin: 0;
+  background: var(--verde);
+  color: var(--verde);
+  font-family: var(--fonte-apoio);
+  font-size: var(--t-base);
+  font-weight: 400;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* clip (e não hidden): corta sobras laterais sem criar rolagem e sem quebrar o position: sticky */
+html,
+body {
+  overflow-x: clip;
+}
+
+img,
+svg,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* Pacifico: só títulos curtos, nunca em caixa-alta (manual) */
+.cursiva {
+  font-family: var(--fonte-cursiva);
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+/* Rótulo em caixa-alta com espaçamento largo (manual: 0,2 a 0,3em) */
+.rotulo-caixa {
+  font-family: var(--fonte-apoio);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.conteiner {
+  width: min(100% - 2 * var(--margem), var(--largura));
+  margin-inline: auto;
+}
+
+/* Fundos alternados. Cada seção escolhe o seu. */
+.fundo-verde {
+  background: var(--verde);
+  color: var(--creme);
+}
+.fundo-creme {
+  background: var(--creme);
+  color: var(--verde);
+}
+.fundo-kraft {
+  background: var(--kraft);
+  color: var(--verde);
+}
+.fundo-salvia {
+  background: var(--salvia);
+  color: var(--creme);
+}
+
+.secao {
+  padding-block: var(--s-6);
+  position: relative;
+}
+
+/* Botões */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 3rem;
+  padding: 0.85rem 1.5rem 0.7rem; /* Josefin senta alto: compensa embaixo */
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  font-family: var(--fonte-apoio);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease),
+    transform 0.2s var(--ease);
+}
+.botao:active {
+  transform: translateY(1px);
+}
+.botao-laranja {
+  background: var(--laranja);
+  color: var(--verde-escuro);
+}
+.botao-laranja:hover {
+  background: #ea8450;
+}
+.botao-contorno {
+  border-color: currentColor;
+  background: transparent;
+}
+.botao-contorno:hover {
+  background: rgba(245, 237, 224, 0.1);
+}
+.fundo-creme .botao-contorno:hover,
+.fundo-kraft .botao-contorno:hover {
+  background: rgba(46, 58, 52, 0.07);
+}
+.botao-verde {
+  background: var(--verde);
+  color: var(--creme);
+}
+.botao-verde:hover {
+  background: var(--verde-escuro);
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--laranja);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Revelar ao rolar (components/Revelar.tsx). Só esconde quando há JavaScript. */
+html[data-js] [data-revelar]:not([data-visto]) {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+html[data-js] [data-revelar] {
+  transition: opacity 0.9s var(--ease) var(--atraso, 0s), transform 0.9s var(--ease) var(--atraso, 0s);
+}
+
+/* Trava a rolagem enquanto a animação de entrada está na tela */
+html[data-entrada] body {
+  overflow: hidden;
+}
+
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------
+   Modo revisão: abra o site com ?revisao=1 para ver tudo que
+   ainda é conteúdo provisório (textos entre colchetes e fotos).
+   ------------------------------------------------------------ */
+html[data-revisao] [data-provisorio] {
+  outline: 3px dashed #ff2d95 !important;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

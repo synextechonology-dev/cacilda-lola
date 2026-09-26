@@ -1,0 +1,41 @@
+.selo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--tam, 8.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--laranja);
+  color: var(--verde-escuro);
+  box-shadow: 0 0 0 5px var(--verde), 0 0 0 6.5px rgba(245, 237, 224, 0.6);
+}
+
+.giro {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  animation: gira 22s linear infinite;
+}
+
+.texto {
+  font-family: var(--fonte-apoio);
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  fill: currentColor;
+}
+
+.e {
+  font-size: calc(var(--tam, 8.5rem) * 0.36);
+  line-height: 1;
+  color: var(--creme);
+  transform: translateY(-0.08em);
+}
+
+@keyframes gira {
+  to {
+    transform: rotate(360deg);
+  }
+}

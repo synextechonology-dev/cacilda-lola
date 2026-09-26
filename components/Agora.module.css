@@ -1,0 +1,70 @@
+.agora {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  min-height: 1.6em;
+  margin-top: var(--s-3);
+  font-size: 1.02rem;
+  color: rgba(245, 237, 224, 0.82);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+.agora strong {
+  color: var(--creme);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.ponto {
+  position: relative;
+  flex: none;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--salvia);
+  transform: translateY(-0.05em);
+}
+
+/* Aceso: pulsa como a luz de "aberto" na porta */
+.aceso {
+  background: var(--laranja);
+}
+.aceso::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--laranja);
+  animation: pulso 2.2s ease-out infinite;
+}
+
+@keyframes pulso {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+.link {
+  color: var(--laranja);
+  font-weight: 600;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1.5px no-repeat;
+  padding-bottom: 0.1em;
+  transition: background-size 0.25s var(--ease);
+}
+
+.link:hover {
+  background-size: 0 1.5px;
+}

@@ -1,0 +1,535 @@
+.cardapio {
+  padding-bottom: var(--s-6);
+}
+
+.ancora {
+  position: absolute;
+  top: 0;
+}
+
+.topo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: end;
+  gap: var(--s-3) var(--s-5);
+}
+
+.kicker {
+  color: var(--terracota);
+  margin-bottom: var(--s-1);
+}
+
+.titulo {
+  font-size: var(--t-xl);
+}
+
+.sub {
+  margin-top: var(--s-2);
+  max-width: 46ch;
+  color: var(--tinta-suave);
+}
+
+/* Como pedir, em três passos */
+.passos {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 1.4rem 1.5rem 1.2rem;
+  list-style: none;
+  background: var(--papel);
+  border-radius: 3px;
+  box-shadow: var(--sombra-papel);
+  transform: rotate(0.8deg);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.passos li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.85rem;
+}
+
+.passoN {
+  flex: none;
+  width: 1.6rem;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--terracota);
+}
+
+/* ---------- Abas: dois cardápios de papel ---------- */
+.abas {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: var(--s-4);
+}
+
+.aba {
+  flex: 0 1 auto;
+  min-height: 3rem;
+  padding: 0.8rem 1.4rem 0.65rem;
+  border: 1.5px solid var(--verde);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--verde);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.aba:hover {
+  background: rgba(46, 58, 52, 0.07);
+}
+
+.abaNota {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+}
+
+.abaAtiva,
+.abaAtiva:hover {
+  background: var(--verde);
+  color: var(--creme);
+}
+
+/* ---------- Barra de categorias (fica presa ao rolar) ---------- */
+.categorias {
+  position: sticky;
+  top: var(--topo);
+  z-index: 20;
+  margin-top: var(--s-3);
+  background: var(--kraft);
+  border-bottom: 1px solid rgba(46, 58, 52, 0.14);
+}
+
+.categoriasTrilho {
+  position: relative; /* referência para o offsetLeft dos marcadores */
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-block: 0.6rem;
+}
+
+.categoriasTrilho::-webkit-scrollbar {
+  display: none;
+}
+
+.categoria {
+  flex: none;
+  padding: 0.6rem 1.05rem 0.45rem;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--tinta-suave);
+  white-space: nowrap;
+  transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.categoria:hover {
+  color: var(--verde);
+  border-color: rgba(46, 58, 52, 0.25);
+}
+
+.categoriaAtiva,
+.categoriaAtiva:hover {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: var(--creme);
+  font-weight: 600;
+}
+
+/* ---------- Painel e folhas ---------- */
+.painel {
+  scroll-margin-top: calc(var(--topo) + 4.5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+}
+
+.aviso {
+  justify-self: start;
+  padding: 0.7rem 1.1rem 0.55rem;
+  border-left: 3px solid var(--terracota);
+  background: rgba(245, 237, 224, 0.6);
+  color: var(--verde);
+  font-weight: 600;
+}
+
+/* Pilha de folhas: duas folhas "de baixo" aparecem tortas atrás da atual */
+.pilha {
+  position: relative;
+  isolation: isolate;
+}
+
+.pilha::before,
+.pilha::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--papel);
+  border-radius: 3px;
+  box-shadow: var(--sombra-papel);
+}
+
+.pilha::before {
+  transform: rotate(-1.4deg) translate(-4px, 8px);
+  background: #efe6d6;
+}
+
+.pilha::after {
+  transform: rotate(0.9deg) translate(6px, 4px);
+  background: #f3ebdd;
+}
+
+/* Folha de cardápio: papel creme, como o modelo A4 do manual */
+.folha {
+  animation: folha 0.55s var(--ease) both;
+  transform-origin: 50% 0;
+  min-width: 0;
+  scroll-margin-top: calc(var(--topo) + 4.5rem);
+  padding: clamp(1.5rem, 1rem + 3vw, 3.5rem) clamp(1.1rem, 0.5rem + 3.5vw, 4rem) clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  background: var(--papel);
+  border-radius: 3px;
+  box-shadow: var(--sombra-papel);
+}
+
+@keyframes folha {
+  from {
+    opacity: 0;
+    transform: translateY(18px) rotate(-0.6deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.folha[hidden] {
+  display: none;
+}
+
+.folhaPagina {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--salvia);
+}
+
+/* Rodapé da folha: virar a página */
+.virar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px dashed rgba(46, 58, 52, 0.25);
+}
+
+.virarBotao {
+  min-height: 2.75rem;
+  padding: 0.5rem 0;
+  border: 0;
+  background: none;
+  color: var(--tinta-suave);
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+
+.virarBotao:hover {
+  color: var(--verde);
+}
+
+.virarProxima {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  color: var(--terracota);
+}
+
+.virarDica {
+  font-family: var(--fonte-cursiva);
+  font-weight: 400;
+  font-size: 1.35rem;
+  line-height: 1.3;
+  color: var(--verde);
+}
+
+.folhaTopo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  margin-bottom: var(--s-4);
+  text-align: center;
+}
+
+/* O laranja aparece só aqui: uma vez por página, como pede o manual */
+.folhaMarca {
+  color: var(--laranja);
+  font-size: clamp(1.7rem, 1.3rem + 1.5vw, 2.4rem);
+}
+
+.folhaGrupo {
+  color: var(--verde);
+}
+
+/* ---------- Destaques com foto ---------- */
+.destaques {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 13.5rem));
+  justify-content: center;
+  gap: var(--s-3);
+  margin: 0 0 var(--s-4);
+  padding: 0 0 var(--s-4);
+  list-style: none;
+  border-bottom: 1px solid rgba(46, 58, 52, 0.12);
+}
+
+.destaque {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.destaqueInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.destaqueNome {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.destaquePe {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+/* ---------- Seções em duas colunas ---------- */
+.secoes {
+  columns: 2 22rem;
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.secao {
+  /* inline-block evita que a seção quebre entre colunas e desalinhe o topo */
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: var(--s-4);
+}
+
+.secaoTitulo {
+  font-size: var(--t-lg);
+  color: var(--verde);
+  margin-bottom: 0.5rem;
+}
+
+.intro {
+  margin-bottom: 0.75rem;
+  color: var(--tinta-suave);
+  font-size: 0.98rem;
+  font-style: italic;
+  max-width: 46ch;
+}
+
+.itens {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  padding-block: 0.45rem;
+}
+
+.linha {
+  display: flex;
+  align-items: baseline;
+  align-items: last baseline; /* quando o nome quebra, pontilhado e preço ficam na última linha */
+  gap: 0.5rem;
+}
+
+.nome {
+  flex: 0 1 auto;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+/* Pontilhado até o preço */
+.pontos {
+  flex: 1 1 1.25rem;
+  min-width: 1.25rem;
+  border-bottom: 2px dotted rgba(46, 58, 52, 0.35);
+  transform: translateY(-0.3em);
+}
+
+.preco {
+  flex: none;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.preco small {
+  margin-right: 0.2em;
+  font-size: 0.72em;
+  font-weight: 400;
+  color: var(--salvia);
+}
+
+.mais {
+  flex: none;
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin-left: 0.15rem;
+  border: 1.5px solid var(--verde);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--verde);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.18s var(--ease), color 0.18s var(--ease), transform 0.18s var(--ease);
+  position: relative;
+}
+
+/* Área de toque de 44px sem aumentar o círculo */
+.mais::before {
+  content: "";
+  position: absolute;
+  inset: -0.35rem;
+}
+
+.mais:hover,
+.mais[aria-expanded="true"] {
+  background: var(--verde);
+  color: var(--creme);
+}
+
+.mais span {
+  transform: translateY(1px);
+}
+
+.maisOk {
+  background: var(--laranja);
+  border-color: var(--laranja);
+  color: var(--verde-escuro);
+  transform: scale(1.08);
+}
+
+.descricao {
+  margin-top: 0.15rem;
+  padding-right: 2.6rem;
+  color: var(--tinta-suave);
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
+.nota {
+  margin-top: 0.5rem;
+  color: var(--salvia);
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
+/* Escolha de recheio/sabor */
+.escolhas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding: 0.65rem 0.75rem;
+  background: var(--kraft);
+  border-radius: 6px;
+}
+
+.escolhasRotulo {
+  margin-right: 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.escolha {
+  min-height: 2.5rem;
+  padding: 0.5rem 0.85rem 0.35rem;
+  border: 1.5px solid var(--verde);
+  border-radius: 999px;
+  background: var(--papel);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.escolha:hover {
+  background: var(--verde);
+  color: var(--creme);
+}
+
+@media (max-width: 60rem) {
+  .destaques {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(10.5rem, 42%);
+    justify-content: start;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    padding-bottom: var(--s-3);
+  }
+
+  .destaque {
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 52rem) {
+  .topo {
+    grid-template-columns: 1fr;
+  }
+
+  .passos {
+    transform: none;
+  }
+}
+
+@media (max-width: 40rem) {
+
+  .abas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .aba {
+    padding-inline: 0.75rem;
+  }
+
+  .nome {
+    font-size: 0.98rem;
+  }
+}

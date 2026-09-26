@@ -1,0 +1,178 @@
+.cabecalho {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--topo);
+  /* Fundo sólido de propósito: backdrop-filter quebraria o menu fixo do celular */
+  background: var(--verde);
+  border-bottom: 1px solid var(--verde-linha);
+  color: var(--creme);
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  height: 100%;
+}
+
+.logo {
+  display: inline-flex;
+  flex: none;
+  text-decoration: none;
+}
+
+.nav ul {
+  display: flex;
+  gap: clamp(1rem, 2.4vw, 2.25rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav a {
+  position: relative;
+  display: inline-block;
+  padding: 0.5rem 0 0.35rem;
+  font-size: 0.98rem;
+  text-decoration: none;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.15rem;
+  height: 1px;
+  background: var(--laranja);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s var(--ease);
+}
+
+.nav a:hover::after,
+.nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.acoes {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.comanda {
+  min-height: 2.6rem;
+  padding: 0.6rem 0.8rem 0.5rem 1.15rem;
+  font-size: 0.95rem;
+}
+
+.contador {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.55rem;
+  height: 1.55rem;
+  padding: 0.12rem 0.35rem 0;
+  border-radius: 999px;
+  background: var(--verde);
+  color: var(--creme);
+  font-size: 0.8rem;
+}
+
+.hamburguer {
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  place-items: center;
+}
+
+.tracos,
+.tracos::before,
+.tracos::after {
+  display: block;
+  width: 1.35rem;
+  height: 1.5px;
+  background: var(--creme);
+  transition: transform 0.25s var(--ease), opacity 0.2s;
+}
+.tracos {
+  position: relative;
+}
+.tracos::before,
+.tracos::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.tracos::before {
+  top: -6px;
+}
+.tracos::after {
+  top: 6px;
+}
+[aria-expanded="true"] .tracos {
+  background: transparent;
+}
+[aria-expanded="true"] .tracos::before {
+  transform: translateY(6px) rotate(45deg);
+}
+[aria-expanded="true"] .tracos::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+@media (max-width: 52rem) {
+  .hamburguer {
+    display: grid;
+  }
+
+  .nav {
+    position: fixed;
+    inset: var(--topo) 0 0;
+    padding: var(--s-4) var(--margem);
+    background: var(--verde);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition: opacity 0.25s var(--ease), transform 0.25s var(--ease), visibility 0s linear 0.25s;
+  }
+
+  .navAberta {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .nav a {
+    font-family: var(--fonte-cursiva);
+    font-size: 2rem;
+    line-height: 1.5;
+  }
+}
+
+/* Celular pequeno: só o contador, para o menu caber (o texto segue para leitores de tela) */
+@media (max-width: 23.5rem) {
+  .comanda {
+    padding: 0.6rem 0.6rem 0.5rem;
+    gap: 0;
+  }
+
+  .comandaTexto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+}

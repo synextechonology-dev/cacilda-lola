@@ -1,0 +1,508 @@
+/* ---------- Botão flutuante: um ticket de comanda ---------- */
+.flutuante {
+  position: fixed;
+  right: max(var(--margem), env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.ticket {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  padding: 0.8rem 1.3rem 0.95rem;
+  border: 0;
+  background: var(--papel);
+  color: var(--verde);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 16px 30px -14px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(46, 58, 52, 0.12);
+  /* Borda de baixo picotada, como papel de comanda destacado do bloco */
+  -webkit-mask: radial-gradient(circle 5px at 50% 100%, #0000 98%, #000) 0 0 / 14px 100% repeat-x;
+  mask: radial-gradient(circle 5px at 50% 100%, #0000 98%, #000) 0 0 / 14px 100% repeat-x;
+  transition: transform 0.2s var(--ease);
+}
+
+.ticket:hover {
+  transform: translateY(-2px);
+}
+
+.ticket::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--laranja);
+}
+
+.ticketTitulo {
+  font-family: var(--fonte-cursiva);
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.ticketResumo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.balao {
+  max-width: 16rem;
+  padding: 0.55rem 0.9rem 0.45rem;
+  border-radius: 6px;
+  background: var(--verde);
+  color: var(--creme);
+  font-size: 0.88rem;
+  box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  pointer-events: none;
+}
+
+.balaoVisivel {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Gaveta ---------- */
+.fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(37, 48, 42, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0s linear 0.3s;
+}
+
+.fundoVisivel {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.gaveta {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 80;
+  width: min(100%, 31rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--kraft);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.38s var(--ease), visibility 0s linear 0.38s;
+}
+
+.gavetaAberta {
+  transform: none;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+.papel {
+  min-height: 100%;
+  margin-left: 0.9rem;
+  padding: 1.5rem clamp(1rem, 4vw, 1.75rem) 2.5rem;
+  background: var(--papel);
+  color: var(--verde);
+  /* Margem esquerda picotada: folha arrancada do bloco de comandas */
+  -webkit-mask: radial-gradient(circle 5px at 0 50%, #0000 98%, #000) 0 0 / 100% 14px repeat-y;
+  mask: radial-gradient(circle 5px at 0 50%, #0000 98%, #000) 0 0 / 100% 14px repeat-y;
+}
+
+.topo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px dashed rgba(46, 58, 52, 0.3);
+}
+
+.titulo {
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+.marca {
+  color: var(--terracota);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.fechar {
+  min-height: 2.75rem;
+  padding: 0.6rem 1rem 0.45rem;
+  border: 1.5px solid var(--verde);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fechar:hover {
+  background: var(--verde);
+  color: var(--creme);
+}
+
+.fechado {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem 0.7rem;
+  border-left: 3px solid var(--terracota);
+  background: rgba(233, 223, 206, 0.7);
+  font-size: 0.93rem;
+  line-height: 1.5;
+}
+
+.vazia,
+.enviado {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  color: var(--tinta-suave);
+}
+
+.enviadoTitulo {
+  color: var(--verde);
+  font-size: 1.8rem;
+}
+
+.enviadoBotoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* ---------- Itens ---------- */
+.form {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+}
+
+.linhas {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.linha {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+  padding-block: 0.85rem;
+  border-bottom: 1px dotted rgba(46, 58, 52, 0.35);
+}
+
+.qtd {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--verde);
+  border-radius: 999px;
+}
+
+.qtd button {
+  width: 2.2rem;
+  height: 2.2rem;
+  border: 0;
+  background: transparent;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.qtd button:hover {
+  background: rgba(46, 58, 52, 0.08);
+}
+
+.qtd span {
+  min-width: 1.1rem;
+  text-align: center;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.15rem;
+}
+
+.linhaTexto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  padding-top: 0.35rem;
+}
+
+.linhaNome {
+  line-height: 1.35;
+}
+
+.selo {
+  padding: 0.1rem 0.45rem 0;
+  border-radius: 3px;
+  background: var(--kraft);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.obsLink {
+  padding: 0.25rem 0;
+  border: 0;
+  background: none;
+  color: var(--terracota);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.obs {
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.45rem 0.6rem 0.35rem;
+  border: 1px solid rgba(46, 58, 52, 0.35);
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.9rem;
+}
+
+.linhaPreco {
+  padding-top: 0.35rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- Campos ---------- */
+.grupo {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 1.1rem 0 0;
+  border: 0;
+  border-top: 1.5px dashed rgba(46, 58, 52, 0.3);
+}
+
+.grupo legend {
+  float: left;
+  width: 100%;
+  margin-bottom: 0.1rem;
+  font-family: var(--fonte-cursiva);
+  font-size: 1.35rem;
+  line-height: 1.4;
+}
+
+.campos {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.campo {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.93rem;
+  font-weight: 600;
+}
+
+.campo em {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--salvia);
+}
+
+.campo input,
+.campo textarea,
+.hora {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.65rem 0.8rem 0.5rem;
+  border: 1.5px solid rgba(46, 58, 52, 0.4);
+  border-radius: 6px;
+  background: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.campo textarea {
+  resize: vertical;
+}
+
+.campo input:focus,
+.campo textarea:focus,
+.hora:focus {
+  border-color: var(--verde);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(226, 115, 58, 0.35);
+}
+
+.form [aria-invalid="true"] {
+  border-color: var(--terracota) !important;
+}
+
+.hora {
+  max-width: 10rem;
+}
+
+.segmentado,
+.opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.segmentado label,
+.opcoes label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.6rem 1rem 0.45rem;
+  border: 1.5px solid rgba(46, 58, 52, 0.45);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.segmentado input,
+.opcoes input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.segmentado label:has(input:focus-visible),
+.opcoes label:has(input:focus-visible) {
+  outline: 2.5px solid var(--laranja);
+  outline-offset: 2px;
+}
+
+.marcado {
+  background: var(--verde);
+  border-color: var(--verde) !important;
+  color: var(--creme);
+  font-weight: 600 !important;
+}
+
+.dica {
+  color: var(--salvia);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.erro {
+  color: var(--terracota);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.maioridade {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.maioridade input {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--verde);
+}
+
+/* ---------- Total ---------- */
+.total {
+  margin: 0.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1.5px dashed rgba(46, 58, 52, 0.3);
+}
+
+.total div {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 0.2rem;
+}
+
+.total dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.totalFinal {
+  margin-top: 0.3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.totalFinal small {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--salvia);
+}
+
+.enviar {
+  width: 100%;
+  min-height: 3.4rem;
+  font-size: 1.05rem;
+}
+
+.previa summary {
+  cursor: pointer;
+  color: var(--terracota);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.previa pre {
+  margin: 0.75rem 0 0;
+  padding: 1rem;
+  background: #e7f3e2;
+  border-radius: 8px;
+  font-family: var(--fonte-apoio);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 40rem) {
+  .flutuante {
+    left: var(--margem);
+    align-items: stretch;
+  }
+
+  .ticket {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .balao {
+    align-self: center;
+  }
+
+  .gaveta {
+    width: 100%;
+  }
+
+  .papel {
+    margin-left: 0.5rem;
+  }
+}

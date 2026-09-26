@@ -1,0 +1,92 @@
+.suporte {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10rem;
+}
+
+.prego {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #d9cdb8, #8b7f6c 70%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  position: relative;
+  z-index: 2;
+}
+
+.pendurada {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -0.35rem;
+  transform-origin: 50% 0;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.35));
+}
+
+.cordao {
+  width: 7.5rem;
+  height: 2.25rem;
+  overflow: visible;
+}
+
+.cordao path {
+  fill: none;
+  stroke: #c9b999;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.placa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10rem;
+  margin-top: -0.2rem;
+  padding: 0.85rem 0.9rem 0.9rem;
+  background: var(--laranja);
+  color: var(--creme);
+  transition: background-color 0.4s var(--ease);
+}
+
+.fechada {
+  background: var(--salvia);
+}
+
+.estado {
+  font-size: 1.55rem;
+  line-height: 1.2;
+}
+
+.detalhe {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Um único balanço amortecido, como placa de porta depois que alguém entra */
+.balanca {
+  animation: balanca 2.4s var(--ease) 1.9s both;
+}
+
+@keyframes balanca {
+  0% {
+    transform: rotate(0);
+  }
+  15% {
+    transform: rotate(7deg);
+  }
+  35% {
+    transform: rotate(-5deg);
+  }
+  55% {
+    transform: rotate(3deg);
+  }
+  75% {
+    transform: rotate(-1.2deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}

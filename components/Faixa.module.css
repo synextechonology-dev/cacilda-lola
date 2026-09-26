@@ -1,0 +1,56 @@
+.faixa {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  background: var(--laranja);
+  color: var(--verde-escuro);
+  border-block: 1.5px solid var(--verde-escuro);
+  transform: rotate(-1.2deg) scale(1.03);
+  margin-block: -1.1rem;
+  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.5);
+}
+
+.rolo {
+  display: flex;
+  width: max-content;
+  animation: corre 38s linear infinite;
+}
+
+.faixa:hover .rolo {
+  animation-play-state: paused;
+}
+
+.trilha {
+  display: flex;
+  flex: none;
+  margin: 0;
+  padding: 0.85rem 0 0.65rem;
+  list-style: none;
+}
+
+.trilha li {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding-right: 1.4rem;
+  font-size: clamp(0.85rem, 0.7rem + 0.5vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.e {
+  font-size: 1.6em;
+  line-height: 0;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--creme);
+  transform: translateY(-0.05em);
+}
+
+@keyframes corre {
+  to {
+    transform: translateX(-50%);
+  }
+}

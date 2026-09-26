@@ -1,0 +1,55 @@
+.marca {
+  display: inline-block;
+  line-height: 1;
+}
+
+.placa {
+  display: block;
+  padding: 0.95em 1.7em 0.85em;
+}
+
+.principal {
+  background: var(--laranja);
+  color: var(--creme);
+}
+
+.alternativa {
+  background: var(--verde);
+  color: var(--creme);
+}
+
+.miolo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.28em;
+}
+
+.nome {
+  font-size: 1.55em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.linha {
+  width: 72%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+.alternativa .linha {
+  background: var(--laranja);
+}
+
+.complemento {
+  font-family: var(--fonte-apoio);
+  font-size: 0.58em;
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+  white-space: nowrap;
+}
+
+.alternativa .complemento {
+  color: var(--laranja);
+}

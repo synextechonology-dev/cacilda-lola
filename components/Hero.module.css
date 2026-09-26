@@ -1,0 +1,282 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: min(100svh, 62rem);
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--topo) + clamp(2.5rem, 5vw, 4rem));
+  padding-bottom: clamp(4.5rem, 8vw, 6.5rem);
+}
+
+/* Luz quente vinda de cima, como a luminária sobre a mesa */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -20% -10% auto 30%;
+  height: 90%;
+  background: radial-gradient(closest-side, rgba(226, 115, 58, 0.16), transparent 70%);
+  pointer-events: none;
+}
+
+/* Estampa "&" bem apagada ocupando a metade direita, como papel de embrulho */
+.estampa {
+  position: absolute;
+  top: 0;
+  right: -2rem;
+  width: 55%;
+  height: 100%;
+  opacity: 0.14;
+  font-size: 2.4rem;
+  -webkit-mask-image: linear-gradient(to left, #000 30%, transparent);
+  mask-image: linear-gradient(to left, #000 30%, transparent);
+  animation: deriva 60s linear infinite alternate;
+}
+
+@keyframes deriva {
+  to {
+    transform: translate3d(-3rem, -2rem, 0);
+  }
+}
+
+.grade {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.texto {
+  max-width: 36rem;
+}
+
+.local {
+  color: var(--laranja);
+  margin-bottom: var(--s-3);
+}
+
+.titulo {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.26em;
+  font-size: clamp(3rem, 1.4rem + 5.2vw, 5.4rem);
+  line-height: 1.08;
+  color: var(--creme);
+  /* Pacifico tem descendentes longos: dá respiro */
+  padding-bottom: 0.12em;
+}
+
+.palavra {
+  display: inline-block;
+  animation: palavra 0.9s var(--ease) var(--d) both;
+}
+
+/* "Entre." fica numa linha só, em laranja: é o convite */
+.primeira {
+  flex-basis: 100%;
+  color: var(--laranja);
+}
+
+@keyframes palavra {
+  from {
+    opacity: 0;
+    transform: translateY(0.45em) rotate(4deg);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.sobe {
+  animation: sobe 0.8s var(--ease) var(--d) both;
+}
+
+@keyframes sobe {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Enquanto a animação de entrada cobre a tela, o herói espera */
+:global(html[data-entrada]) .palavra,
+:global(html[data-entrada]) .sobe,
+:global(html[data-entrada]) .quadro,
+:global(html[data-entrada]) .selo {
+  animation-play-state: paused;
+}
+
+.slogan {
+  margin-top: var(--s-3);
+  max-width: 34ch;
+  font-size: var(--t-md);
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(245, 237, 224, 0.88);
+}
+
+.slogan strong {
+  font-weight: 600;
+  color: var(--creme);
+}
+
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: var(--s-4);
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+  margin: var(--s-4) 0 0;
+  padding-top: var(--s-2);
+  border-top: 1px solid var(--verde-linha);
+  font-size: var(--t-sm);
+  line-height: 1.5;
+  color: rgba(245, 237, 224, 0.78);
+}
+
+.info dt {
+  margin-bottom: 0.2rem;
+  font-size: 0.68rem;
+  color: rgba(245, 237, 224, 0.5);
+}
+
+.info dd {
+  margin: 0;
+}
+
+.vitrine {
+  position: relative;
+  justify-self: end;
+  width: min(100%, 27rem);
+  padding-top: 3.5rem;
+}
+
+.quadro {
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.4));
+  animation: quadro 1.2s var(--ease) 0.3s both;
+}
+
+@keyframes quadro {
+  from {
+    opacity: 0;
+    transform: translateY(30px) rotate(2.5deg) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-1.2deg);
+  }
+}
+
+.placa {
+  position: absolute;
+  top: -1.2rem;
+  left: 50%;
+  z-index: 3;
+  transform: translateX(-50%);
+}
+
+.selo {
+  position: absolute;
+  z-index: 4;
+  left: -3.2rem;
+  bottom: 2.5rem;
+  animation: selo 0.9s var(--ease) 1.2s both;
+}
+
+@keyframes selo {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-40deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Setinha para rolar */
+.rolar {
+  position: absolute;
+  left: 50%;
+  bottom: 1.25rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+.rolar span {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-right: 1.5px solid rgba(245, 237, 224, 0.6);
+  border-bottom: 1.5px solid rgba(245, 237, 224, 0.6);
+  transform: rotate(45deg);
+  animation: quica 2s var(--ease) infinite;
+}
+
+@keyframes quica {
+  0%,
+  100% {
+    transform: translateY(-3px) rotate(45deg);
+  }
+  50% {
+    transform: translateY(4px) rotate(45deg);
+  }
+}
+
+@media (max-width: 52rem) {
+  .hero {
+    min-height: 0;
+  }
+
+  .grade {
+    grid-template-columns: 1fr;
+  }
+
+  .texto {
+    max-width: none;
+  }
+
+  .soDesktop {
+    display: none;
+  }
+
+  .slogan {
+    font-size: 1.15rem;
+  }
+
+  .vitrine {
+    justify-self: center;
+    width: min(80%, 20rem);
+    margin-top: var(--s-3);
+  }
+
+  .selo {
+    left: -1.75rem;
+    bottom: 1.5rem;
+    --tam: 6.25rem;
+  }
+
+  .estampa {
+    width: 100%;
+    opacity: 0.08;
+  }
+
+  .rolar {
+    display: none;
+  }
+}

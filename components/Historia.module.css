@@ -1,0 +1,147 @@
+.grade {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.kicker {
+  color: var(--terracota);
+  margin-bottom: var(--s-1);
+}
+
+.titulo {
+  font-size: var(--t-xl);
+}
+
+.abre {
+  font-size: var(--t-md);
+  line-height: 1.45;
+  color: var(--verde);
+}
+
+.corpo {
+  display: grid;
+  gap: var(--s-2);
+  margin-top: var(--s-3);
+  max-width: 60ch;
+  color: var(--tinta-suave);
+  line-height: 1.7;
+}
+
+.recado {
+  margin-top: var(--s-5);
+  transform: rotate(-1.5deg);
+  box-shadow: 0 18px 30px -18px rgba(37, 48, 42, 0.6);
+  max-width: 22rem;
+  padding: 2rem 1.75rem 1.75rem;
+  background: var(--laranja);
+  color: var(--creme);
+  border-radius: 3px;
+}
+
+.fio {
+  display: block;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.8;
+  margin-bottom: 1.1rem;
+}
+
+.recadoFrase {
+  font-size: 1.9rem;
+  line-height: 1.3;
+}
+
+.recadoPe {
+  margin-top: 0.5rem;
+  font-weight: 400;
+}
+
+/* Álbum: fotos coladas com cantoneiras, levemente tortas como em álbum de família */
+.album {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2.5vw, 2rem);
+  margin: 0;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  list-style: none;
+  background: var(--kraft);
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(46, 58, 52, 0.08);
+}
+
+.retrato figure {
+  margin: 0;
+}
+
+.retrato:nth-child(4n + 1) figure {
+  transform: rotate(-1.6deg);
+}
+.retrato:nth-child(4n + 2) figure {
+  transform: rotate(1.2deg) translateY(0.75rem);
+}
+.retrato:nth-child(4n + 3) figure {
+  transform: rotate(0.9deg);
+}
+.retrato:nth-child(4n + 4) figure {
+  transform: rotate(-1deg) translateY(0.75rem);
+}
+
+.cantoneiras {
+  position: relative;
+  padding: 0.5rem;
+  background: var(--papel);
+  box-shadow: 0 8px 18px -12px rgba(37, 48, 42, 0.6);
+}
+
+/* Cantoneiras de papel verde nos quatro cantos (ecoam os cantos do rótulo) */
+.cantoneiras::before,
+.cantoneiras::after {
+  content: "";
+  position: absolute;
+  width: 1.4rem;
+  height: 1.4rem;
+  z-index: 2;
+  background: linear-gradient(135deg, var(--verde) 50%, transparent 50%);
+}
+.cantoneiras::before {
+  top: -0.2rem;
+  left: -0.2rem;
+}
+.cantoneiras::after {
+  bottom: -0.2rem;
+  right: -0.2rem;
+  transform: rotate(180deg);
+}
+
+.retrato figcaption {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.7rem;
+  font-size: var(--t-sm);
+  line-height: 1.4;
+  color: var(--tinta-suave);
+}
+
+.ano {
+  color: var(--terracota);
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 52rem) {
+  .grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 21rem) {
+  .album {
+    grid-template-columns: 1fr;
+  }
+
+  .retrato figure {
+    transform: none !important;
+  }
+}

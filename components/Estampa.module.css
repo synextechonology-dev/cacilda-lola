@@ -1,0 +1,20 @@
+.estampa {
+  display: grid;
+  gap: 0.1em;
+  overflow: hidden;
+  color: var(--salvia);
+  font-size: 1.9rem;
+  line-height: 1.5;
+  user-select: none;
+  pointer-events: none;
+}
+
+.linha {
+  display: flex;
+  gap: 0.9em;
+  white-space: nowrap;
+}
+
+.laranja {
+  color: var(--laranja);
+}
