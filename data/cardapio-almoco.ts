@@ -5,7 +5,7 @@ import type { Cardapio } from "./tipos";
  * Os IDs começam com "alm-" para não colidir com o cardápio geral na comanda.
  *
  * ATENÇÃO: os sucos têm preço diferente do cardápio geral
- * (laranja R$ 12 aqui x R$ 18 lá; limão R$ 10 x R$ 15). Confirmar com a Fancine.
+ * (laranja R$ 12 aqui x R$ 18 lá; limão R$ 10 x R$ 15). Confirmar com a Francine.
  */
 export const cardapioAlmoco: Cardapio = {
   id: "almoco",

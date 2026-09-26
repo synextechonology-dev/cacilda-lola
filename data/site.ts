@@ -8,7 +8,7 @@ export const site = {
   complemento: "café · bistrô",
   slogan: "O único bistrô em Santa Cruz, do almoço ao happy hour",
   assinatura: "Um cantinho com sabor de casa de vó.",
-  dona: "Fancine",
+  dona: "Francine",
 
   whatsapp: {
     /** Só dígitos, com DDI e DDD. */
@@ -62,7 +62,7 @@ export const site = {
   /**
    * Os três momentos do dia no bistrô (seção "Do almoço ao happy hour").
    * `inicio` (24h) decide qual momento o site destaca como "agora".
-   * PREENCHER: confirmar horários com a Fancine.
+   * PREENCHER: confirmar horários com a Francine.
    */
   momentos: [
     {

@@ -10,7 +10,7 @@ type Props = {
 
 /**
  * Logo recriado em código a partir do manual (rótulo + "Cacilda & Lola" + "café · bistrô").
- * Se a Fancine tiver o arquivo vetorial oficial (SVG), troque por ele aqui.
+ * Se a Francine tiver o arquivo vetorial oficial (SVG), troque por ele aqui.
  */
 export function Marca({ variante = "principal", tamanho = "1rem", className = "" }: Props) {
   const principal = variante === "principal";

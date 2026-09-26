@@ -2,7 +2,7 @@
 
 Tudo que está aqui aparece no site entre [colchetes] ou como espaço de foto. Abra o site com `?revisao=1` no fim do endereço (ex.: `localhost:3000/?revisao=1`) para ver cada pendência marcada com um contorno rosa.
 
-## 1. Perguntar para a Fancine
+## 1. Perguntar para a Francine
 
 ### Cardápio e pedidos
 - [ ] **Preço dos sucos.** O cardápio geral diz laranja R$ 18 e limão R$ 15. O de almoço diz laranja R$ 12 e limão R$ 10. Qual vale? (`data/cardapio-geral.ts` e `data/cardapio-almoco.ts`)
@@ -21,9 +21,9 @@ Tudo que está aqui aparece no site entre [colchetes] ou como espaço de foto. A
   O campo `inicio` decide qual momento o site mostra como "agora" no topo da página e na régua do dia.
 
 ### Nossa história
-O texto da seção já foi escrito só com o que o cardápio confirma (pão da Vó Cacilda na receita da família, bolos da Vó Lola). Mostrar para a Fancine e ajustar. (`components/Historia.tsx`)
-- [ ] Confirmar a frase "A Fancine juntou essas receitas num endereço só".
-- [ ] Quem foram (ou são) Cacilda e Lola e qual a relação com a Fancine.
+O texto da seção já foi escrito só com o que o cardápio confirma (pão da Vó Cacilda na receita da família, bolos da Vó Lola). Mostrar para a Francine e ajustar. (`components/Historia.tsx`)
+- [ ] Confirmar a frase "A Francine juntou essas receitas num endereço só".
+- [ ] Quem foram (ou são) Cacilda e Lola e qual a relação com a Francine.
 - [ ] Como e quando o bistrô começou.
 - [ ] O que ela quer que o cliente sinta ao entrar.
 - [ ] 4 fotos antigas com ano e legenda (as duas, a cozinha, os primeiros dias, a inauguração ou outras). Preencher `ano` e `src` em `ALBUM` (`components/Historia.tsx`).
@@ -46,4 +46,4 @@ O texto da seção já foi escrito só com o que o cardápio confirma (pão da V
 - [ ] Link da Synex no rodapé (`data/site.ts` → `credito.url`)
 
 ## Já confirmado
-WhatsApp (14) 99768-7855 · Instagram @cacildaelola.cafebistro · Av. Dr. Pedro Camarinha, 1043, Vila Saul, CEP 18908-040 · Segunda a sábado, 11h às 19h · Slogan "O único bistrô em Santa Cruz, do almoço ao happy hour" · Dona: Fancine · Cardápio geral e de almoço transcritos em 26/09/2026.
+WhatsApp (14) 99768-7855 · Instagram @cacildaelola.cafebistro · Av. Dr. Pedro Camarinha, 1043, Vila Saul, CEP 18908-040 · Segunda a sábado, 11h às 19h · Slogan "O único bistrô em Santa Cruz, do almoço ao happy hour" · Dona: Francine · Cardápio geral e de almoço transcritos em 26/09/2026.

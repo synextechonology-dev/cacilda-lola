@@ -1,6 +1,6 @@
 # Cacilda & Lola: site do café e bistrô
 
-Site de uma página para o Cacilda & Lola (café · bistrô), na Av. Dr. Pedro Camarinha, 1043, Vila Saul, Santa Cruz do Rio Pardo (SP). Dona: Fancine. Projeto da agência Synex (João). Cliente em prospecção: o site precisa impressionar na primeira visita.
+Site de uma página para o Cacilda & Lola (café · bistrô), na Av. Dr. Pedro Camarinha, 1043, Vila Saul, Santa Cruz do Rio Pardo (SP). Dona: Francine. Projeto da agência Synex (João). Cliente em prospecção: o site precisa impressionar na primeira visita.
 
 ## Stack
 - Next.js 15 (App Router) + React 19 + TypeScript
@@ -51,7 +51,7 @@ Início verde · Faixa laranja · Do almoço ao happy hour creme · Cardápio kr
 - Acessibilidade: foco visível laranja, alvos de toque de 44px, gaveta com foco preso e Esc, `aria-live` quando um item entra na comanda.
 
 ## Próximos passos sugeridos
-1. Preencher `PREENCHER.md` com a Fancine e trocar as fotos.
+1. Preencher `PREENCHER.md` com a Francine e trocar as fotos.
 2. Rodar `npm run build` e testar a mensagem do pedido num WhatsApp de teste antes de apontar para o número real.
 3. Se o cardápio mudar com frequência, mover `data/cardapio-*.ts` para um CMS simples ou planilha.
 4. Publicar na Vercel e configurar o domínio.

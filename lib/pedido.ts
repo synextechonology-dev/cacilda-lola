@@ -49,7 +49,7 @@ export const dadosVazios: DadosPedido = {
 export const subtotal = (linhas: LinhaComanda[]) =>
   linhas.reduce((soma, l) => soma + l.precoUnit * l.qtd, 0);
 
-/** Código curto para a Fancine localizar o pedido na conversa: CL-2609-1432 */
+/** Código curto para a Francine localizar o pedido na conversa: CL-2609-1432 */
 export function codigoPedido(data = new Date()) {
   const p = (n: number) => String(n).padStart(2, "0");
   return `CL-${p(data.getDate())}${p(data.getMonth() + 1)}-${p(data.getHours())}${p(data.getMinutes())}`;

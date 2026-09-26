@@ -2,7 +2,7 @@ import { Foto } from "./Foto";
 import s from "./Historia.module.css";
 
 /**
- * PREENCHER com a Fancine: o texto e as fotos antigas.
+ * PREENCHER com a Francine: o texto e as fotos antigas.
  * Os parágrafos entre colchetes são o roteiro do que perguntar.
  */
 const ALBUM = [
@@ -22,7 +22,7 @@ export function Historia() {
             Duas receitas, uma casa
           </h2>
 
-          {/* PREENCHER com a Fancine: confirmar e completar (quem foram, quando começou). Ver PREENCHER.md */}
+          {/* PREENCHER com a Francine: confirmar e completar (quem foram, quando começou). Ver PREENCHER.md */}
           <div className={s.corpo} data-provisorio>
             <p className={s.abre}>
               Todo bistrô tem uma receita que veio antes dele. O nosso tem duas.
@@ -33,7 +33,7 @@ export function Historia() {
               todos os dias, do Chocolate Supremo ao Merengue de Morango.
             </p>
             <p>
-              A Fancine juntou essas receitas num endereço só e abriu a porta para Santa Cruz. O resto é o que
+              A Francine juntou essas receitas num endereço só e abriu a porta para Santa Cruz. O resto é o que
               acontece aqui dentro todo dia: gente que vem almoçar, volta para o café e fica até o happy hour.
             </p>
           </div>
